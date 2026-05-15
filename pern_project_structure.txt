@@ -49,3 +49,23 @@ project/
 ├── .env
 ├── .gitignore
 └── README.md
+
+Beginner Rule to Follow
+
+When coding, ask yourself:
+
+Am I writing SQL?
+→ models
+
+Am I handling req/res?
+→ controllers
+
+Am I writing app logic?
+→ services
+
+Am I defining endpoints?
+→ routes
+
+If you follow just this rule, your architecture stays clean.
+
+For your portfolio projects (auth, dashboards, CRUD apps, AI app, SaaS-style apps), this structure is more than enough and won’t feel overengineered.
