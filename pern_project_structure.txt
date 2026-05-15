@@ -1,0 +1,51 @@
+project/
+│
+├── client/                        # React frontend
+│   ├── src/
+│   │   ├── components/           # Reusable UI
+│   │   ├── pages/                # Page components
+│   │   ├── services/             # API calls
+│   │   ├── hooks/                # Custom hooks
+│   │   ├── context/              # Auth/global state
+│   │   ├── utils/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   │
+│   └── package.json
+│
+├── server/                       # Express backend
+│   ├── src/
+│   │
+│   │   ├── config/
+│   │   │   └── db.js             # PostgreSQL connection
+│   │   │
+│   │   ├── controllers/          # Handles req/res
+│   │   │   └── authController.js
+│   │   │
+│   │   ├── services/             # Business logic
+│   │   │   └── authService.js
+│   │   │
+│   │   ├── models/               # SQL queries
+│   │   │   └── authModel.js
+│   │   │
+│   │   ├── routes/               # API endpoints
+│   │   │   └── authRoutes.js
+│   │   │
+│   │   ├── middleware/           # Auth/error middleware
+│   │   │   ├── authMiddleware.js
+│   │   │   └── errorMiddleware.js
+│   │   │
+│   │   ├── validators/           # Request validation
+│   │   │   └── authValidator.js
+│   │   │
+│   │   ├── utils/
+│   │   │   └── generateToken.js
+│   │   │
+│   │   ├── app.js                # Express app config
+│   │   └── server.js             # Starts server
+│   │
+│   └── package.json
+│
+├── .env
+├── .gitignore
+└── README.md
