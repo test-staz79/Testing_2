@@ -2,59 +2,90 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Website</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Tathagata | Portfolio</title>
 </head>
 
 <body>
-    <header>
-        <div>
-            <h1>I'm Tathagata</h1>
-            <h3>A Fullstack Web Developer.</h3>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm Tathagata 👋</h1>
+            <h3>Full Stack Web Developer</h3>
+            <p>
+                Building scalable web applications and transitioning into the
+                PERN stack.
+            </p>
         </div>
     </header>
-    <main>
-        <div>
-            <h4>About Me:</h4>
-            <p>Junior Web Developer with 1+ year of exprerince woking with Core PHP, JavaScript, HTML, CSS and Bootstrap in a product-based company. Currently tansitioning to the PERN stack with a strong focus on building scalable and modern web applications. Passionate abut learning new technologies and building impactful features.</p>
-        </div>
-        <div>
-            <h4> Skills: </h4>
-            <div>
-                <ul>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                    <li>PHP</li>
-                    <li>React</li>
-                    <li>NodeJS</li>
-                    <li>ExpressJS</li>
-                    <li>MySQL</li>
-                    <li>PostgreSQL</li>
-                    <li>Motoko</li>
-                </ul>
+
+    <main class="container">
+
+        <!-- About -->
+        <section class="card">
+            <h2>About Me</h2>
+            <p>
+                Junior Web Developer with 1+ year of experience working with
+                Core PHP, JavaScript, HTML, CSS, and Bootstrap in a
+                product-based company. Currently transitioning to the PERN stack
+                with a strong focus on building scalable and modern web
+                applications. Passionate about learning new technologies and
+                building impactful features.
+            </p>
+        </section>
+
+        <!-- Skills -->
+        <section class="card">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <span class="skill">HTML</span>
+                <span class="skill">CSS</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">PHP</span>
+                <span class="skill">React</span>
+                <span class="skill">Node.js</span>
+                <span class="skill">Express.js</span>
+                <span class="skill">MySQL</span>
+                <span class="skill">PostgreSQL</span>
+                <span class="skill">Motoko</span>
             </div>
-        </div>
-        <div>
-            <h4>Work Experience:</h4>
-            <h6>Key Contributions (Tradeset Platform):</h6>
-            <ul>
+        </section>
+
+        <!-- Work Experience -->
+        <section class="card">
+            <h2>Work Experience</h2>
+            <h4>Key Contributions (Tradeset Platform)</h4>
+
+            <ul class="work-list">
                 <li>Designed and developed the Premium Content module (UI + Backend API logic)</li>
-                <li>Designed and developed the Email Temaplate module (UI + Backend API logic)</li>
+                <li>Designed and developed the Email Template module (UI + Backend API logic)</li>
                 <li>Designed and developed the Combo Program module (UI + Backend API logic)</li>
                 <li>Designed and developed the Webinar module (UI + Backend API logic)</li>
-                <li>Collaborated with seniors to improve preformace and fix bugs in the existing modules</li>
+                <li>Collaborated with senior developers to improve performance and fix bugs in existing modules</li>
             </ul>
-        </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="contact-section">
+            <a href="mailto:tathagatatest2025@gmail.com" class="contact-btn">
+                Contact Me
+            </a>
+        </section>
+
     </main>
 
     <footer>
-        <div>
-            <button><a href="mailto:tathagatatest2025@gmail.com"></a>Contact Me</button>
-        </div>
+        <p>
+            © <span id="year"></span> Tathagata Das. All Rights Reserved.
+        </p>
     </footer>
+
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
 
 </body>
 

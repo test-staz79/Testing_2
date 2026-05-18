@@ -1,0 +1,156 @@
+/* ===== Google Font ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fb;
+    color: #333;
+    line-height: 1.7;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+    min-height: 50vh;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 40px 20px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero-content h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    max-width: 600px;
+    margin: auto;
+    opacity: 0.95;
+}
+
+/* ===== Main Container ===== */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: -60px auto 50px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== Cards ===== */
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card h2 {
+    color: #2563eb;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.card h4 {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* ===== Skills ===== */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.skill {
+    background: #eef2ff;
+    color: #4338ca;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.skill:hover {
+    background: #4338ca;
+    color: white;
+    cursor: pointer;
+}
+
+/* ===== Work List ===== */
+.work-list {
+    padding-left: 20px;
+}
+
+.work-list li {
+    margin-bottom: 12px;
+}
+
+/* ===== Contact Button ===== */
+.contact-section {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.contact-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+/* ===== Footer ===== */
+footer {
+    background: #111827;
+    color: #d1d5db;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .card {
+        padding: 20px;
+    }
+}
