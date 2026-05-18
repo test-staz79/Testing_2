@@ -47,7 +47,7 @@ body {
 .container {
     width: 90%;
     max-width: 1000px;
-    margin: -60px auto 50px;
+    margin: -48px auto 50px;
     position: relative;
     z-index: 2;
 }
