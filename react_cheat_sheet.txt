@@ -1,0 +1,515 @@
+Here’s a **React Hooks Cheat Sheet** you can keep beside you while coding/interviewing.
+
+# React Hooks Cheat Sheet
+
+```txt
+useState     → store state
+useEffect    → side effects
+useContext   → share data globally
+useRef       → persist values / DOM access
+useMemo      → cache expensive values
+useCallback  → cache functions
+useReducer   → complex state logic
+custom hook  → reusable logic
+```
+
+---
+
+# 1. `useState()`
+
+### Purpose
+
+Store and update component state.
+
+### Structure
+
+```jsx id="33wjca"
+const [state, setState] =
+  useState(initialValue);
+```
+
+### Example
+
+```jsx id="jvcmrk"
+const [count, setCount] =
+  useState(0);
+
+<button
+  onClick={() =>
+    setCount(count + 1)
+  }
+>
+  Add
+</button>
+```
+
+### Rules
+
+✅ causes rerender
+
+❌ don’t mutate directly
+
+Bad:
+
+```js id="gntjlwm"
+count++;
+```
+
+Good:
+
+```js id="bxqj2m"
+setCount(count + 1);
+```
+
+### Functional update
+
+```jsx id="7y2icd"
+setCount(prev => prev + 1);
+```
+
+Use when state depends on previous state.
+
+---
+
+# 2. `useEffect()`
+
+### Purpose
+
+Run side effects.
+
+Examples:
+
+```txt
+API call
+timer
+localStorage
+DOM updates
+```
+
+### Structure
+
+```jsx id="do5lxv"
+useEffect(() => {
+
+  // run code
+
+  return () => {
+    // cleanup
+  };
+
+}, [dependencies]);
+```
+
+### Runs when?
+
+#### Once
+
+```jsx id="1jlwmc"
+useEffect(() => {
+
+}, []);
+```
+
+#### On dependency change
+
+```jsx id="gf0dxh"
+useEffect(() => {
+
+}, [count]);
+```
+
+#### Every render
+
+```jsx id="t2lsyz"
+useEffect(() => {
+
+});
+```
+
+### Example
+
+```jsx id="s0pjof"
+useEffect(() => {
+  console.log("Count changed");
+}, [count]);
+```
+
+### Cleanup
+
+```jsx id="r84rzh"
+useEffect(() => {
+  const id =
+    setInterval(() => {}, 1000);
+
+  return () => {
+    clearInterval(id);
+  };
+}, []);
+```
+
+---
+
+# 3. `useContext()`
+
+### Purpose
+
+Share data without prop drilling.
+
+### Step 1: Create
+
+```jsx id="pqicd2"
+const ThemeContext =
+  createContext();
+```
+
+### Step 2: Provide
+
+```jsx id="t4g1pq"
+<ThemeContext.Provider
+  value="dark"
+>
+  <App />
+</ThemeContext.Provider>
+```
+
+### Step 3: Consume
+
+```jsx id="uljlwm"
+const theme =
+  useContext(ThemeContext);
+```
+
+### Best for
+
+```txt
+theme
+auth user
+language
+global settings
+```
+
+---
+
+# 4. `useRef()`
+
+### Purpose
+
+Persist value **without rerender**
+
+OR access DOM.
+
+### Structure
+
+```jsx id="a1f9nf"
+const ref =
+  useRef(initialValue);
+```
+
+Access:
+
+```js id="5uyx35"
+ref.current
+```
+
+### DOM Example
+
+```jsx id="gn9gq5"
+const inputRef =
+  useRef();
+
+<input ref={inputRef} />
+
+button.onClick(() => {
+  inputRef.current.focus();
+});
+```
+
+### Persist value
+
+```jsx id="3lyw15"
+const countRef =
+  useRef(0);
+
+countRef.current++;
+```
+
+### Difference
+
+```txt
+useState → rerenders
+
+useRef → no rerender
+```
+
+---
+
+# 5. `useMemo()`
+
+### Purpose
+
+Cache expensive calculations.
+
+### Structure
+
+```jsx id="6ezp0g"
+const value =
+  useMemo(() => {
+
+    return calculation();
+
+  }, [dependency]);
+```
+
+### Example
+
+```jsx id="5ftv0o"
+const filteredTodos =
+  useMemo(() => {
+
+    return todos.filter(todo =>
+      todo.done
+    );
+
+  }, [todos]);
+```
+
+### Mental model
+
+```txt
+remember computed value
+until dependency changes
+```
+
+### Use when
+
+```txt
+heavy calculations
+large filtering
+sorting
+performance optimization
+```
+
+---
+
+# 6. `useCallback()`
+
+### Purpose
+
+Cache functions.
+
+### Structure
+
+```jsx id="tq2efj"
+const handleClick =
+  useCallback(() => {
+
+  }, [dependency]);
+```
+
+### Example
+
+```jsx id="clhjol"
+const handleSubmit =
+  useCallback(() => {
+    console.log("submit");
+  }, []);
+```
+
+### Mental model
+
+```txt
+useMemo → values
+
+useCallback → functions
+```
+
+### Use when
+
+Passing functions to child components.
+
+---
+
+# 7. `useReducer()`
+
+### Purpose
+
+Complex state management.
+
+### Structure
+
+```jsx id="3jkhqv"
+const [state, dispatch] =
+  useReducer(
+    reducer,
+    initialState
+  );
+```
+
+Reducer:
+
+```jsx id="6b87ls"
+function reducer(
+  state,
+  action
+) {
+  switch(action.type) {
+
+    case "increment":
+      return {
+        count:
+          state.count + 1
+      };
+
+    default:
+      return state;
+  }
+}
+```
+
+Usage:
+
+```jsx id="jcv4d7"
+dispatch({
+  type: "increment"
+});
+```
+
+### Best for
+
+```txt
+forms
+shopping cart
+todo app
+complex updates
+```
+
+---
+
+# 8. Custom Hook
+
+### Purpose
+
+Reusable logic.
+
+### Structure
+
+```jsx id="k9f91o"
+function useCounter() {
+
+  const [count, setCount] =
+    useState(0);
+
+  function increment() {
+    setCount(c => c + 1);
+  }
+
+  return {
+    count,
+    increment
+  };
+}
+```
+
+Usage:
+
+```jsx id="vqjlwm"
+const {
+  count,
+  increment
+} = useCounter();
+```
+
+Rule:
+
+```txt
+must start with "use"
+```
+
+---
+
+# Hook Decision Tree
+
+```txt
+Need UI update?
+      |
+      YES → useState
+
+Need side effect?
+      |
+      YES → useEffect
+
+Need shared state?
+      |
+      YES → useContext
+
+Need DOM access?
+      |
+      YES → useRef
+
+Need expensive calculation?
+      |
+      YES → useMemo
+
+Need stable function?
+      |
+      YES → useCallback
+
+Complex state logic?
+      |
+      YES → useReducer
+```
+
+---
+
+# Interview Questions Cheat Sheet
+
+### Why `useState`?
+
+> To manage component state and rerender UI.
+
+### Why `useEffect`?
+
+> To handle side effects like API calls, timers, or subscriptions.
+
+### Why `useContext`?
+
+> To avoid prop drilling and share global data.
+
+### Why `useRef`?
+
+> To persist values without rerender or access DOM elements.
+
+### Difference between `useMemo` and `useCallback`?
+
+```txt
+useMemo → memoized value
+
+useCallback → memoized function
+```
+
+### When use `useReducer` over `useState`?
+
+> When state logic becomes complex or involves multiple related updates.
+
+---
+
+# 80/20 Rule (Most Important)
+
+Focus these first:
+
+```txt
+1. useState
+2. useEffect
+3. useRef
+4. useContext
+```
+
+Then learn:
+
+```txt
+5. useMemo
+6. useCallback
+7. useReducer
+```
+
+That covers ~90% of junior React interviews.
