@@ -1,0 +1,204 @@
+backend/
+│
+├── src/
+│   ├── config/
+│   │     └── db.js
+│   │
+│   ├── controllers/
+│   │     ├── authController.js
+│   │     ├── listingController.js
+│   │     ├── favoriteController.js
+│   │     └── inquiryController.js
+│   │
+│   ├── models/
+│   │     ├── authModel.js
+│   │     ├── listingModel.js
+│   │     ├── favoriteModel.js
+│   │     └── inquiryModel.js
+│   │
+│   ├── routes/
+│   │     ├── authRoutes.js
+│   │     ├── listingRoutes.js
+│   │     ├── favoriteRoutes.js
+│   │     └── inquiryRoutes.js
+│   │
+│   ├── middleware/
+│   │     ├── authMiddleware.js
+│   │     ├── errorMiddleware.js
+│   │     └── uploadMiddleware.js
+│   │
+│   ├── utils/
+│   │     ├── generateToken.js
+│   │     └── pagination.js
+│   │
+│   ├── uploads/
+│   │
+│   ├── app.js
+│   └── server.js
+│
+├── .env
+├── package.json
+└── README.md
+
+
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    phone VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE listings (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    title VARCHAR(255),
+    description TEXT,
+    rent INT,
+    city VARCHAR(100),
+    area VARCHAR(100),
+    gender_preference VARCHAR(20),
+    furnished BOOLEAN DEFAULT false,
+    image_url TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE favorites (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    listing_id INT REFERENCES listings(id) ON DELETE CASCADE
+);
+
+
+
+CREATE TABLE inquiries (
+    id SERIAL PRIMARY KEY,
+    sender_id INT REFERENCES users(id),
+    listing_id INT REFERENCES listings(id),
+    message TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+API ROUTES
+AUTH
+POST   /api/auth/register
+POST   /api/auth/login
+GET    /api/auth/profile
+
+
+LISTINGS
+GET      /api/listings
+GET      /api/listings/:id
+POST     /api/listings
+PUT      /api/listings/:id
+DELETE   /api/listings/:id
+
+
+FAVORITES
+POST    /api/favorites/:listingId
+DELETE  /api/favorites/:listingId
+GET     /api/favorites
+
+
+INQUIRIES
+POST   /api/inquiries/:listingId
+GET    /api/inquiries
+
+
+
+
+README
+
+Add:
+
+screenshots
+API routes
+architecture
+setup instructions
+
+
+
+
+
+
+IMPORTANT BACKEND CONCEPTS TO LEARN
+1. SQL JOINS
+
+Very important.
+
+Example:
+
+SELECT listings.*, users.name
+FROM listings
+JOIN users ON listings.user_id = users.id;
+2. Pagination
+
+Example:
+
+LIMIT 10 OFFSET 20
+3. Protected Routes
+
+JWT middleware:
+
+Authorization: Bearer token
+4. Validation
+
+Use:
+
+express-validator
+5. Error Handling
+
+Centralized middleware.
+
+Very important for interviews.
+
+WHAT TO SAY IN INTERVIEWS
+
+This project lets you explain:
+
+REST API design
+PostgreSQL relations
+authentication flow
+MVC architecture
+pagination
+filtering
+deployment
+security practices
+
+That is MUCH better than explaining animations in React.
+
+WHAT RECRUITERS WILL LIKE
+India
+backend logic
+SQL knowledge
+clean APIs
+Australia
+practical marketplace architecture
+production-ready thinking
+scalable backend structure
+FINAL ADVICE
+
+Your frontend only needs to be:
+
+clean,
+responsive,
+usable.
+
+Do NOT spend time making:
+
+fancy UI,
+complex animations,
+pixel-perfect design.
+
+Spend your energy on:
+
+backend quality,
+SQL,
+architecture,
+deployment,
+API design.
+
+That will help you much more in interviews.
