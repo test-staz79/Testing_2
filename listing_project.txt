@@ -72,7 +72,28 @@ CREATE TABLE favorites (
     listing_id INT REFERENCES listings(id) ON DELETE CASCADE
 );
 
+If landlords shouldn't self-register, create an admin-only endpoint:
 
+POST /admin/create-landlord
+
+Admin sends:
+
+{
+  "email": "landlord@example.com",
+  "password": "TemporaryPassword123"
+}
+
+Backend hashes it before saving:
+
+const hashedPassword = await bcrypt.hash(password, 10);
+
+await User.create({
+  email,
+  password: hashedPassword,
+  role: "landlord"
+});
+
+Then require the landlord to change the password on first login.
 
 CREATE TABLE inquiries (
     id SERIAL PRIMARY KEY,
